@@ -1,4 +1,5 @@
 import json
+import re
 
 # Input JSON data
 data = json.loads(input())
@@ -20,25 +21,30 @@ def is_valid_int(value):
 def is_valid_str(value):
     return isinstance(value, str) and value != ""
 
+def is_valid_stop_name(value):
+    if not is_valid_str(value):
+        return False
+    # Validate stop_name format
+    return re.match(r"^[A-Z][a-z]+.*\s(Road|Avenue|Boulevard|Street)$", value) is not None
+
+def is_valid_stop_type(value):
+    # Valid stop_type: empty or one of 'S', 'O', 'F'
+    return value == "" or value in ["S", "O", "F"]
+
 def is_valid_time(value):
     if not isinstance(value, str):
         return False
-    try:
-        hours, minutes = map(int, value.split(":"))
-        return 0 <= hours < 24 and 0 <= minutes < 60
-    except ValueError:
-        return False
-
-def is_valid_stop_type(value):
-    return value == "" or (isinstance(value, str) and len(value) == 1)
+    # Validate time format: HH:MM in 24-hour format
+    return re.match(r"^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$", value) is not None
 
 # Validation logic
 for record in data:
+    # Type and field validation
     if not is_valid_int(record.get("bus_id", None)):
         errors["bus_id"] += 1
     if not is_valid_int(record.get("stop_id", None)):
         errors["stop_id"] += 1
-    if not is_valid_str(record.get("stop_name", None)):
+    if not is_valid_str(record.get("stop_name", None)) or not is_valid_stop_name(record["stop_name"]):
         errors["stop_name"] += 1
     if not is_valid_int(record.get("next_stop", None)):
         errors["next_stop"] += 1
