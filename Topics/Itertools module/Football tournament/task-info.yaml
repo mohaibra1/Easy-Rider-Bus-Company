@@ -1,0 +1,14 @@
+type: code
+files:
+  - name: main.py
+    visible: true
+    highlight_level: NONE
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/8493#comment
+status: Failed
+feedback:
+  message: |
+    Failed. Wrong answer
+  time: "Tue, 26 Nov 2024 09:27:29 UTC"
+record: -1
+submission_language: python3

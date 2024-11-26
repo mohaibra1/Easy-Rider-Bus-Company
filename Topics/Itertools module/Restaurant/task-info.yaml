@@ -1,0 +1,21 @@
+type: code
+files:
+  - name: main.py
+    visible: true
+    highlight_level: NONE
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/8494#comment
+status: Failed
+feedback:
+  message: |
+    Failed. Runtime error
+
+    Error:
+    Traceback (most recent call last):
+      File "/sandbox/main.py", line 13, in <module>
+        if sum(price) <= budget:
+                         ^^^^^^
+    NameError: name 'budget' is not defined
+  time: "Tue, 26 Nov 2024 09:28:54 UTC"
+record: -1
+submission_language: python3
